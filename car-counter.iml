@@ -8,6 +8,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="opencv-248" level="project" />
+    <orderEntry type="library" name="joda-time-2.3" level="project" />
+    <orderEntry type="library" name="ini4j-0.5.2-sources" level="project" />
+    <orderEntry type="library" name="jcommander-1.19" level="project" />
+    <orderEntry type="library" name="guava-17.0" level="project" />
+    <orderEntry type="library" name="commons-lang3-3.3.2" level="project" />
+    <orderEntry type="library" name="log4j-1.2.17" level="project" />
+    <orderEntry type="library" name="sqlite-jdbc4-3.8.2-SNAPSHOT" level="project" />
   </component>
 </module>
 
