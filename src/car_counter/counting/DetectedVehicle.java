@@ -59,4 +59,24 @@ public class DetectedVehicle
         this.speed = speed;
         this.colour = colour;
     }
+
+    public DateTime getDateTime()
+    {
+        return dateTime;
+    }
+
+    public Direction getInitialLocation()
+    {
+        return initialLocation;
+    }
+
+    public Direction getEndLocation()
+    {
+        return endLocation;
+    }
+
+    public Float getSpeed()
+    {
+        return speed;
+    }
 }
