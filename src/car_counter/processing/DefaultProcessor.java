@@ -20,7 +20,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.UUID;
 
 import car_counter.counting.CarCounter;
@@ -80,6 +79,8 @@ public class DefaultProcessor
         {
             throw new IllegalStateException("Data path is not an existing directory: " + data);
         }
+
+        logger.info(String.format("Starting processor: incoming:[%s] data:[%s]", incoming, data));
     }
 
     public void process()
@@ -90,9 +91,9 @@ public class DefaultProcessor
             {
                 try
                 {
-
                     if (!Files.isRegularFile(sourceFile))
                     {
+                        logger.debug(String.format("Skipping %s - not regular file", sourceFile));
                         continue;
                     }
 
@@ -103,6 +104,9 @@ public class DefaultProcessor
 
                     Collection<DetectedVehicle> detectedVehicles = carCounter.processVideo(destinationFile, dateTime);
                     storage.store(destinationFile, detectedVehicles);
+
+                    logger.info(String.format("Processed '%s'@%s found %d vehicles", sourceFile, dateTime,
+                        detectedVehicles.size()));
                 }
                 catch (Exception e)
                 {
