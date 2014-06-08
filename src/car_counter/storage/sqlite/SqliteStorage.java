@@ -121,7 +121,7 @@ public class SqliteStorage implements Storage
                 }
 
                 statement.setString(5, null);
-                statement.setString(6, destinationFile.toString());
+                statement.setString(6, destinationFile.getFileName().toString());
 
                 statement.executeUpdate();
             }

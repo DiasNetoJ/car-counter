@@ -46,7 +46,9 @@ public class Main
             }
 
             // Read in the configuration
-            Wini ini = new Wini(new File(options.configFile));
+            Wini ini = new Wini();
+            ini.getConfig().setMultiOption(true);
+            ini.load(new File(options.configFile));
 
             new DefaultProcessor(ini).process();
         }

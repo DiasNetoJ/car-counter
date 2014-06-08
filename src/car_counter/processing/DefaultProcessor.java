@@ -16,6 +16,8 @@
 
 package car_counter.processing;
 
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -87,7 +89,17 @@ public class DefaultProcessor
     {
         while (true)
         {
-            for (Path sourceFile : incomingDirectory)
+            processIncomingContents();
+
+            ThreadUtils.sleepMillis(100);
+        }
+    }
+
+    public void processIncomingContents()
+    {
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(incomingDirectory))
+        {
+            for (Path sourceFile : stream)
             {
                 try
                 {
@@ -113,8 +125,15 @@ public class DefaultProcessor
                     logger.error("Error processing file: " + sourceFile, e);
                 }
             }
-
-            ThreadUtils.sleepMillis(100);
         }
+        catch (IOException e)
+        {
+            logger.error("Error listing incoming directory", e);
+        }
+    }
+
+    public Storage getStorage()
+    {
+        return storage;
     }
 }

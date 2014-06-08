@@ -32,6 +32,11 @@ public class DatabaseTestUtils
 {
     public static void assertTableContents(String table, Connection connection, String expectedContents)
     {
+        assertThat(getTableContents(table, connection), is(expectedContents));
+    }
+
+    public static String getTableContents(String table, Connection connection)
+    {
         StringBuilder contents = new StringBuilder();
 
         try
@@ -46,7 +51,7 @@ public class DatabaseTestUtils
                 contents.append(row++);
                 contents.append(" ");
 
-                for (int i = 1; i < metaData.getColumnCount(); i++)
+                for (int i = 1; i <= metaData.getColumnCount(); i++)
                 {
                     String column = metaData.getColumnName(i);
                     Object value = resultSet.getObject(i);
@@ -61,6 +66,6 @@ public class DatabaseTestUtils
             throw new IllegalStateException("Error querying database", e);
         }
 
-        assertThat(contents.toString(), is(expectedContents));
+        return contents.toString();
     }
 }

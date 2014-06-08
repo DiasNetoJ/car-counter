@@ -76,8 +76,8 @@ public class TestSqliteStorage
 
         // Assert
         String expected =
-            "0 id=1 timestamp=1330797967008 initial_location=1 end_location=2 speed=null colour=null \n" +
-            "1 id=2 timestamp=1330797967008 initial_location=2 end_location=1 speed=null colour=null \n";
+            "0 id=1 timestamp=1330797967008 initial_location=1 end_location=2 speed=null colour=null video_file=video.avi \n" +
+            "1 id=2 timestamp=1330797967008 initial_location=2 end_location=1 speed=null colour=null video_file=video.avi \n";
 
         DatabaseTestUtils.assertTableContents("detected_vehicles", storage.getConnection(), expected);
     }
